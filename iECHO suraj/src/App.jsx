@@ -1,58 +1,37 @@
-
-import echologo from './assets/echo_2x (1).png'
 import welcomeimg from './assets/welcomePageIllustration.svg'
+import Nav from './nav';
+import{users} from './Data.js'
 function App() {
-  
-  const select= function(){
+  const phoneSelect= ()=>{
     alert("Thank you for choosing mobile, Suraj");
-
   }
-  const users = [{ name: 'John Doe', age: 25},{ name: 'Alexander', age: 17},
-  { name: 'Nelson Mandela', age: 78},{ name: 'Mahatma Gandhi', age: 56},
-  { name: 'Nikol Tesla', age: 39}]
   const sortedUsers = users.sort((a, b) => a.age - b.age);
   console.log(sortedUsers)
   for (let i = 0; i < sortedUsers.length; i++) {
     const names = sortedUsers[i].name;
     console.log(names);
-   
-  
     }
-   
-    const Emailselect= function(){
-      users.forEach(user => {
-        alert(`Name: ${user.name}`);
-      });
-  }
- 
+  const emailSelect = ()=> {
+    const userNames = users.map(user => user.name);
+    alert(`Names: ${userNames}`);
+  };
 
   return (
     <>
-     <header>
-     <nav>
-           <img src={echologo} />
-            <div class="help"><a href="https://projectecho.notion.site/iECHO-Help-Center-1e3301587de24775a6abd9100f937682">?</a></div>
-
-        </nav>
-     </header>
+     <Nav/>
      <main>
             <div class="pageleft">
                 <h1>Welcome to iECHO</h1>
                 <p>Please choose an option to continue</p>
                 <div class="continue">
-                    <a href=""> <div onClick={Emailselect} class="email"> Continue with Email</div></a>
-                   
-                   <div onClick={select} class="phone">  <a href="">Continue with Phone</a>
-                    </div>
-                    <div class="divider">
+                   <button onClick={emailSelect}>Continue with Email</button>
+                   <button on onClick={phoneSelect}> Continue with Phone</button>
+                   <div class="divider">
                         <p>OR</p>
                     </div>
-                
-                    <div class="google">
-                    <a href="">Continue with Google</a>
-                </div>
-               
-            </div>
+                    <button type='button' disabled id='Google'>Continue with google</button>
+                    </div>
+    
             <div class="tc"><p>By continuing, you accept the <a href="https://iecho.org/terms">Terms of Use</a> and<a href="https://iecho.org/privacy"> Privacy Policy</a></p></div>
             
                 </div>
@@ -63,10 +42,7 @@ function App() {
                 </div>
       
         </main>
-        <footer>
-        <p>© 2024 The University of New Mexico and Project ECHO</p>
-        </footer>
-        
+        <footer><p>© 2024 The University of New Mexico and Project ECHO</p></footer>        
     </>
   )
 }
